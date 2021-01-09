@@ -4,9 +4,6 @@ jobs:
   link-jira-issue-key:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
       - name: Login
         uses: atlassian/gajira-login@v2.0.0
         env:
