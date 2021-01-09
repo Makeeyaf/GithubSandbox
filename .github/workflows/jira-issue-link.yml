@@ -1,5 +1,7 @@
 name: Link Jira issue key in PR
+
 on: pull_request
+
 jobs:
   link-jira-issue-key:
     runs-on: ubuntu-latest
