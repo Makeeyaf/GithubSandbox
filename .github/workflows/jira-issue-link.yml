@@ -1,0 +1,15 @@
+on: pull_request
+name: Link Jira issue key in PR
+jobs:
+  link-jira-issue-key:
+    name: Link Jira issue key in PR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Jira Find issue key
+        id: find
+        uses: atlassian/gajira-find-issue-key@v2.0.2
+        with:
+          from: branch
+        
+      - name: Find issue info
+        run: echo "Issue ${{ steps.find.outputs.issue }}"
