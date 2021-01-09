@@ -1,0 +1,14 @@
+name: Link Jira issue key in PR
+on: pull_request
+jobs:
+  link-jira-issue-key:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Find in commit messages
+        id: find
+        uses: cybervoid/gajira-get-issue@v1.0
+        with:
+          input-text: ${{ github.event.ref }}
+          
+      - name: Find issue info
+        run: echo "Issue ${{ steps.find.outputs.issue }}"
