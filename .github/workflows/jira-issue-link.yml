@@ -16,7 +16,7 @@ jobs:
         uses: cybervoid/gajira-get-issue@v1.1
         id: find
         with:
-          string: ${{ steps.pr.outputs.branch }}
+          input-text: ${{ steps.pr.outputs.branch }}
         
       - name: Find issue info
         run: echo "Issue ${{ steps.find.outputs.issue }}"
