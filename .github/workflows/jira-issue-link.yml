@@ -5,7 +5,7 @@ on:
     types: [opened]
 
 jobs:
-  link-jira-issue-key:
+  link_jira_issue_key:
     runs-on: ubuntu-latest
     steps:
       - name: Find Jira Issue
@@ -19,3 +19,10 @@ jobs:
         with:
           body: "[${{ steps.find.outputs.issue }}](${{ secrets.JIRA_BASE_URL }}/browse/${{ steps.find.outputs.issue }})\n${{ github.event.pull_request.body }}"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  add-reviews:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: kentaro-m/auto-assign-action@v1.1.2
+        with:
+          configuration-path: ".github/some_name_for_configs.yml"
