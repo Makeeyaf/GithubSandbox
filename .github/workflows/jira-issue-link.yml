@@ -1,6 +1,8 @@
 name: Link Jira issue key in PR
 
-on: pull_request
+on: 
+  pull_request:
+    types: [opened]
 
 jobs:
   link-jira-issue-key:
@@ -17,6 +19,3 @@ jobs:
         with:
           body: "[${{ steps.find.outputs.issue }}](${{ secrets.JIRA_BASE_URL }}/browse/${{ steps.find.outputs.issue }})\n${{ github.event.pull_request.body }}"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        
-      - name: Find issue info
-        run: echo "Issue ${{ steps.find.outputs.issue }}, ${{ github.event.action }}, ${{ github.event.pull_request.body }}"
