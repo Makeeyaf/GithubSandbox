@@ -4,18 +4,11 @@ jobs:
   link-jira-issue-key:
     runs-on: ubuntu-latest
     steps:
-      - name: Login
-        uses: atlassian/gajira-login@v2.0.0
-        env:
-          JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
-          JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
-          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
-      
-      - name: Find Jira issue key
-        uses: atlassian/gajira-find-issue-key@v2.0.2
+      - name: Find in commit messages
         id: find
+        uses: cybervoid/gajira-get-issue@v1.0
         with:
-          from: branch
-        
+          input-text: ${{ github.ref }}
+          
       - name: Find issue info
         run: echo "Issue ${{ steps.find.outputs.issue }}"
