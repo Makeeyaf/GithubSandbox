@@ -1,20 +1,12 @@
-on: pull_request
 name: Link Jira issue key in PR
+on: [pull_request]
 jobs:
   link-jira-issue-key:
-    name: Link Jira issue key in PR
     runs-on: ubuntu-latest
     steps:
-      - name: Jira Login
-        uses: atlassian/gajira-login@master
-        env:
-          JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
-          JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
-          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
-
-      - name: Jira Find issue key
-        id: find
+      - name: Find Jira issue key
         uses: atlassian/gajira-find-issue-key@v2.0.2
+        id: find
         with:
           from: branch
         
